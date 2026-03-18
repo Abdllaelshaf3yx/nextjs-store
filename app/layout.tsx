@@ -1,4 +1,11 @@
 import type { Metadata } from "next";
+import {
+  ClerkProvider,
+  Show,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from "@clerk/nextjs";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Container from "@/components/global/Container";
@@ -18,13 +25,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} antialiased`}>
-        <Providers>
-          <Navbar />
-          <Container className="py-20">{children}</Container>
-        </Providers>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" suppressHydrationWarning>
+        <body className={`${inter.className} antialiased`}>
+          <Providers>
+            <Navbar />
+            <Container className="py-20">{children}</Container>
+          </Providers>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
